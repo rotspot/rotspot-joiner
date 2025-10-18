@@ -2,24 +2,30 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Joining Roblox</title>
+	<title>Joining Roblox...</title>
 	<script>
-		window.onload = function()
-		{
+		window.onload = function() {
 			const params = new URLSearchParams(window.location.search);
 			const placeId = params.get('placeId');
 			const gameInstanceId = params.get('gameInstanceId');
 
-			if (placeId && gameInstanceId)
-			{
+			if (placeId && gameInstanceId) {
+				// Переход в Roblox
 				window.location.href = `roblox://placeID=${placeId}&gameInstanceId=${gameInstanceId}`;
-			}
-			else
-			{
+
+				// Попытка закрыть вкладку через небольшую задержку
+				setTimeout(() => {
+					// Некоторые браузеры разрешают window.close(), если вкладка была открыта по ссылке
+					window.open('', '_self');
+					window.close();
+				}, 3000); // 3 секунды на запуск Roblox
+			} else {
 				document.body.textContent = "Error: Missing Place ID or Game Instance ID.";
 			}
 		};
 	</script>
 </head>
-<body></body>
+<body>
+	<p>Connecting to Roblox server...</p>
+</body>
 </html>
